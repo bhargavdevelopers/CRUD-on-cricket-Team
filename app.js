@@ -62,7 +62,7 @@ app.post("/players/", async (request, response) => {
         ${playerId},
          '${playerName}',
          ${jerseyNumber},
-         '${role}',
+         '${role}'
       );`;
   const dbResponse = await db.run(addPlayerQuery);
   const id = dbResponse.lastID;
@@ -96,7 +96,7 @@ app.put("/players/:playerId/", async (request, response) => {
     SET
       player_name='${playerName}',
       jersey_number=${jerseyNumber},
-      role='${role}',
+      role='${role}'
     WHERE
       player_id = ${playerId};`;
 
