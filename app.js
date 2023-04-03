@@ -80,7 +80,12 @@ app.get("/players/:playerId/", async (request, response) => {
     ORDER BY
       player_id = ${playerId};`;
   const player = await db.get(getPlayerQuery);
-  response.send(player);
+  response.send({
+    playerId: player["player_id"],
+    playerName: player["player_name"],
+    jerseyNumber: player["jersey_number"],
+    role: player["role"],
+  });
 });
 
 //Update player API
