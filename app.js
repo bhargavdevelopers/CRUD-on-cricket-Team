@@ -74,18 +74,16 @@ app.get("/players/:playerId/", async (request, response) => {
   const { playerId } = request.params;
   const getPlayerQuery = `
     SELECT
-      *
+      player_id as playerId,
+      player_name as playerName,
+      jersey_number as jerseyNumber,
+      role as role
     FROM
       cricket_team
-    ORDER BY
+    WHERE
       player_id = ${playerId};`;
   const player = await db.get(getPlayerQuery);
-  response.send({
-    playerId: player["player_id"],
-    playerName: player["player_name"],
-    jerseyNumber: player["jersey_number"],
-    role: player["role"],
-  });
+  response.send(player);
 });
 
 //Update player API
